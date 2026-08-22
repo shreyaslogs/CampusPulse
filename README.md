@@ -1,5 +1,11 @@
 ```mermaid
-graph TD %% Base Styles classDef main fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#fff; classDef auth fill:#065f46,stroke:#10b981,stroke-width:2px,color:#fff; classDef public fill:#1e3a8a,stroke:#3b82f6,stroke-width:2px,color:#fff; classDef data fill:#7c2d12,stroke:#f97316,stroke-width:2px,color:#fff;
+graph TD
+
+%% Base Styles
+classDef main fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#fff;
+classDef auth fill:#065f46,stroke:#10b981,stroke-width:2px,color:#fff;
+classDef public fill:#1e3a8a,stroke:#3b82f6,stroke-width:2px,color:#fff;
+classDef data fill:#7c2d12,stroke:#f97316,stroke-width:2px,color:#fff;
 
 %% Root
 CAMPENTRA[CAMPENTRA PLATFORM]:::main
