@@ -1,3 +1,20 @@
+### Architecture Flowchart
+
+```mermaid
+graph TD
+    A[GDG Community Platform] -->|Bright Data Scraper CLI| B(Raw Chapter Data)
+    B -->|Node.js Script| C(Data Cleaning & Parsing)
+    C -->|Supabase Auth & Database| D(Campentra Backend Storage)
+    D -->|Vite + React API Fetch| E(Campentra Frontend Interface)
+    E -->|Hackathon User| F[Search, Filter & Discover Campuses]
+    
+    style A fill:#4285F4,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#FFBB00,stroke:#333,stroke-width:2px,color:#000
+    style D fill:#3ECF8E,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#61DAFB,stroke:#333,stroke-width:2px,color:#000
+```
+
+
 # Campentra
 
 Campentra is a student-focused campus discovery platform built for the **Into The Scrape-Verse** hackathon in collaboration with **Bright Data**.
