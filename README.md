@@ -21,7 +21,8 @@ AU -->|Manage Content| MGMT[Post / Update Events & Announcements]:::auth
 AU -->|Application Review| APP_REV{Approve or Reject <br> Student Registration?}:::auth
 
 %% Registration Logic Loop
-STUDENT[Student View Event]::public --> AUTH_CHK{Is Student <br> Logged In?}:::public
+STUDENT[Student View Event]:::public
+STUDENT --> AUTH_CHK{Is Student <br> Logged In?}:::public
 AUTH_CHK -->|No| REG_FLOW[Create Account <br> Verify Email Confirmation Link]:::public
 REG_FLOW -->|Account Created| DB_PROFILE[(Supabase User Profile)]:::data
 AUTH_CHK -->|Yes| REG_SUB[Submit Registration <br> Auto-fills Profile Data]:::public
