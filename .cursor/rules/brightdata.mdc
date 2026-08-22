@@ -1,0 +1,15 @@
+---
+description: Bright Data Scraper Studio collector for campus listings
+alwaysApply: true
+---
+
+# Bright Data — Campus listings
+
+Reuse this Scraper Studio collector. Do not create a new scraper unless this ID is invalid.
+
+- `SCRAPER_STUDIO_COLLECTOR_ID=c_mt1siw2t2hb6awqkr9`
+- Target: public KnowAFest upcoming college fests (`https://www.knowafest.com/explore/upcomingfests`)
+- Usage: `npx -p @brightdata/cli bdata scraper run c_mt1siw2t2hb6awqkr9 https://www.knowafest.com/explore/upcomingfests --pretty`
+- Heal in place with the same Collector ID: `npx -p @brightdata/cli bdata scraper heal c_mt1siw2t2hb6awqkr9 "<what broke>" --url https://www.knowafest.com/explore/upcomingfests`
+- Public pages only. Do not scrape government, login-walled, paywalled, or personal data.
+- Ingest into Campentra with `npm run collect:campus-listings`

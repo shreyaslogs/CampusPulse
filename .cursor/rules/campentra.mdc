@@ -1,0 +1,44 @@
+---
+description: Core development rules for the Campentra hackathon project
+globs:
+alwaysApply: true
+---
+
+# Campentra — Cursor Rules
+
+## Project Principles
+- Keep the code clean, modular, readable, and maintainable.
+- Prefer simple, reliable solutions over unnecessary complexity.
+- Do not introduce libraries or frameworks unless they are genuinely needed.
+- Preserve existing functionality when making changes.
+- Before changing architecture, inspect the existing project structure and code.
+
+## Development Workflow
+- Work incrementally and make one logical change at a time.
+- Reuse existing components, utilities, and styles where appropriate.
+- Avoid duplicate code.
+- Keep files focused on a single responsibility.
+- Clearly handle loading, empty, error, and success states.
+
+## UI / UX
+- Keep the interface responsive across mobile, tablet, and desktop.
+- Prioritize accessibility and clear user interactions.
+- Maintain a consistent visual language throughout Campentra.
+- Do not add unnecessary animations or visual effects.
+
+## Code Quality
+- Use meaningful names for variables, functions, components, and files.
+- Add comments only where they clarify non-obvious logic.
+- Handle errors gracefully.
+- Do not leave debugging code, temporary logs, or unused imports in production code.
+
+## Security
+- Never hard-code API keys, passwords, tokens, or other secrets.
+- Keep secrets in environment variables.
+- Validate user input where appropriate.
+- Do not expose sensitive information in client-side code.
+
+## Git
+- Make focused changes.
+- Use clear commit messages.
+- Do not modify or delete files unrelated to the current task.
