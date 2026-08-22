@@ -1,56 +1,54 @@
-graph TD
-    %% Base Styles
-    classDef main fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#fff;
-    classDef auth fill:#065f46,stroke:#10b981,stroke-width:2px,color:#fff;
-    classDef public fill:#1e3a8a,stroke:#3b82f6,stroke-width:2px,color:#fff;
-    classDef data fill:#7c2d12,stroke:#f97316,stroke-width:2px,color:#fff;
+```mermaid
+graph TD %% Base Styles classDef main fill:#1f2937,stroke:#3b82f6,stroke-width:2px,color:#fff; classDef auth fill:#065f46,stroke:#10b981,stroke-width:2px,color:#fff; classDef public fill:#1e3a8a,stroke:#3b82f6,stroke-width:2px,color:#fff; classDef data fill:#7c2d12,stroke:#f97316,stroke-width:2px,color:#fff;
 
-    %% Root
-    CAMPENTRA[CAMPENTRA PLATFORM]:::main
+%% Root
+CAMPENTRA[CAMPENTRA PLATFORM]:::main
 
-    %% Core Splitting Branches
-    CAMPENTRA -->|Branch 1| OCC[OFFICIAL CAMPUS CONTENT]:::auth
-    CAMPENTRA -->|Branch 2| CC[CLUBS & COMMUNITIES]:::public
+%% Core Splitting Branches
+CAMPENTRA -->|Branch 1| OCC[OFFICIAL CAMPUS CONTENT]:::auth
+CAMPENTRA -->|Branch 2| CC[CLUBS & COMMUNITIES]:::public
 
-    %% LEFT SIDE: Official Content & Deep Auth Rules
-    OCC --> AU[Authorized Campus Users]:::auth
-    
-    AU -->|Manage Content| MGMT[Post / Update Events & Announcements]:::auth
-    AU -->|Application Review| APP_REV{Approve or Reject <br> Student Registration?}:::auth
-    
-    %% Registration Logic Loop
-    STUDENT[Student View Event]:::public --> AUTH_CHK{Is Student <br> Logged In?}:::public
-    AUTH_CHK -->|No| REG_FLOW[Create Account <br> Verify Email Confirmation Link]:::public
-    REG_FLOW -->|Account Created| DB_PROFILE[(Supabase User Profile)]:::data
-    AUTH_CHK -->|Yes| REG_SUB[Submit Registration <br> Auto-fills Profile Data]:::public
-    DB_PROFILE --> REG_SUB
-    
-    %% Constraint Validation
-    REG_SUB --> DUP_CHK{Already Registered? <br> Check Email & Phone}:::data
-    DUP_CHK -->|Yes| ERR[Block Duplicate Entry]:::data
-    DUP_CHK -->|No| APP_REV
-    
-    %% Review Outcomes
-    APP_REV -->|APPROVED| APP_YES[Seat Deducted <br> Auto-Update Student Dashboard Notification]:::auth
-    APP_REV -->|REJECTED| APP_NO[Seat Released <br> Auto-Update Student Dashboard Notification]:::auth
-    
-    APP_YES --> SU_DB1[(Supabase Database)]:::data
-    APP_NO --> SU_DB1
-    MGMT --> SU_DB1
+%% LEFT SIDE: Official Content & Deep Auth Rules
+OCC --> AU[Authorized Campus Users]:::auth
 
-    %% RIGHT SIDE: Scraping Pipeline
-    CC --> GDG[GDG Community Platform]:::public
-    GDG --> BDS[Bright Data Scraper CLI]:::public
-    BDS -->|Extract Layout| RCD[Raw Chapter Data <br> member_count & focus_area]:::public
-    RCD --> NJ[Node.js Runtime Script]:::public
-    NJ --> CP[Data Cleaning & Parsing Engine]:::public
-    CP --> SU_DB2[(Supabase Auth & Database)]:::data
-    
-    %% Storage and Interface
-    SU_DB1 --> CBS[Campentra Backend Storage]:::data
-    SU_DB2 --> CBS
-    CBS --> VITE[Vite + React API Fetch]:::main
-    VITE --> FRONT[Campentra Frontend Interface]:::main
+AU -->|Manage Content| MGMT[Post / Update Events & Announcements]:::auth
+AU -->|Application Review| APP_REV{Approve or Reject <br> Student Registration?}:::auth
+
+%% Registration Logic Loop
+STUDENT[Student View Event]::public --> AUTH_CHK{Is Student <br> Logged In?}:::public
+AUTH_CHK -->|No| REG_FLOW[Create Account <br> Verify Email Confirmation Link]:::public
+REG_FLOW -->|Account Created| DB_PROFILE[(Supabase User Profile)]:::data
+AUTH_CHK -->|Yes| REG_SUB[Submit Registration <br> Auto-fills Profile Data]:::public
+DB_PROFILE --> REG_SUB
+
+%% Constraint Validation
+REG_SUB --> DUP_CHK{Already Registered? <br> Check Email & Phone}:::data
+DUP_CHK -->|Yes| ERR[Block Duplicate Entry]:::data
+DUP_CHK -->|No| APP_REV
+
+%% Review Outcomes
+APP_REV -->|APPROVED| APP_YES[Seat Deducted <br> Auto-Update Student Dashboard Notification]:::auth
+APP_REV -->|REJECTED| APP_NO[Seat Released <br> Auto-Update Student Dashboard Notification]:::auth
+
+APP_YES --> SU_DB1[(Supabase Database)]:::data
+APP_NO --> SU_DB1
+MGMT --> SU_DB1
+
+%% RIGHT SIDE: Scraping Pipeline
+CC --> GDG[GDG Community Platform]:::public
+GDG --> BDS[Bright Data Scraper CLI]:::public
+BDS -->|Extract Layout| RCD[Raw Chapter Data <br> member_count & focus_area]:::public
+RCD --> NJ[Node.js Runtime Script]:::public
+NJ --> CP[Data Cleaning & Parsing Engine]:::public
+CP --> SU_DB2[(Supabase Auth & Database)]:::data
+
+%% Storage and Interface
+SU_DB1 --> CBS[Campentra Backend Storage]:::data
+SU_DB2 --> CBS
+CBS --> VITE[Vite + React API Fetch]:::main
+VITE --> FRONT[Campentra Frontend Interface]:::main
+```
+
 
 
 # Campentra
